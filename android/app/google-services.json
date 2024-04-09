@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "453673442707",
+    "project_id": "fir-ce64a",
+    "storage_bucket": "fir-ce64a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:453673442707:android:bd8bf6ccdc72f3f6b51c66",
+        "android_client_info": {
+          "package_name": "com.example.censusdemo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9pcYQ-cbpI-PKKcT_nyObagBmmaasIAI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
