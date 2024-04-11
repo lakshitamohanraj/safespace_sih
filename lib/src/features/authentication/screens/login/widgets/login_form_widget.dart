@@ -3,9 +3,12 @@ import 'package:censusdemo/src/features/authentication/screens/forget_password/f
 import 'package:censusdemo/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../../constants/sizes.dart';
 import '../../../../../constants/text_strings.dart';
+import '../../../controllers/login_controller.dart';
 import '../../forget_password/forget_password_options/forget_password_btn_widget.dart';
 
 class LoginForm extends StatelessWidget {
@@ -16,15 +19,18 @@ class LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-
+    final controller=Get.put(LoginInController());
+    final _formKey=GlobalKey<FormState>();
 
     return Form(
+        key:_formKey,
         child: Container(
           padding: EdgeInsets.symmetric(vertical: tFormHeight - 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TextFormField(
+                controller:controller.email,
                 decoration: const InputDecoration(
                   prefixIcon: Icon(Icons.person_outline_outlined),
                   labelText: tEmail,
@@ -34,6 +40,7 @@ class LoginForm extends StatelessWidget {
               ),
               const SizedBox(height: tFormHeight - 20,),
               TextFormField(
+                controller:controller.password,
                 decoration: const InputDecoration(
                   prefixIcon: Icon(Icons.fingerprint),
                   labelText: tPassword,
@@ -58,7 +65,12 @@ class LoginForm extends StatelessWidget {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: (){
-                     // AuthenticationRepository.instance.loginWithEmailAndPassword(email, password)
+                    if(_formKey.currentState!.validate()) {
+                      AuthenticationRepository.instance
+                          .loginWithEmailAndPassword(
+                          controller.email.text.trim(),
+                          controller.password.text.trim());
+                    }
                     },
                     child: Text(tLogin.toUpperCase()),
                   )

@@ -10,6 +10,9 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import '../live_monitoring/video_streaming.dart';
+import '../profile/profile_screen.dart';
+
 class DashBoard extends StatelessWidget {
    DashBoard({super.key});
 
@@ -30,10 +33,16 @@ class DashBoard extends StatelessWidget {
           Container(
             margin:const EdgeInsets.only(right:20, top:7),
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color:tCardBgColor),
-            child:IconButton(onPressed: (){},icon:const Image(image: AssetImage(tUserProfileImage))),
+            child:IconButton(onPressed: (){
+              Get.to(()=>ProfileScreen());
+            },
+                icon:const Image(image: AssetImage(tUserProfileImage))),
           )
         ],
       ),
+
+
+
 
 
       body: SingleChildScrollView( // Allow scrolling if content overflows
@@ -45,118 +54,286 @@ class DashBoard extends StatelessWidget {
               Text("Keep Workplace Safer",style: txtTheme.bodyText2),
               const SizedBox(height:tDashboardCardPadding),
 
+
+
+          Stack( // Stack elements on top of each other
+            children: [
+              // Banner image (replace with your image provider)
+              Image.asset(tDashBoardBannerImage,
+                height: 200.0, // Adjust height as needed
+                width: double.infinity, // Fills horizontal space
+                fit: BoxFit.cover, // Cover the container
+              ),
+              Positioned( // Position slogan text
+                top: 80.0, // Adjust position from top
+                left: 16.0, // Adjust position from left
+                child: Text(
+                  'Slogans to keep here',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24.0,
+                  ),
+                ),
+              ),
+              Positioned( // Position app logo
+                top: 16.0, // Adjust position from top
+                left: 16.0, // Adjust position from left
+                child: Image.asset(
+                  "assets/logo_light.png",
+                  height: 50.0, // Adjust height as needed
+                  width: 50.0, // Adjust width as needed
+                ),
+              ),
+            ],
+          ),
+
+
+
+
+
+
+
+
+
               //3 buttons
-          //
-          Wrap(
-               // spacing: 20,
-
-                children: [
-
-                              ElevatedButton(
-                                onPressed: (){
-                                  Get.to(()=>SignUpScreen());
-                                },
-                                style:ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.transparent,
-
-                                ),
-                                child: Expanded(
-                                  child: Container(
-                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color:Colors.redAccent),
-                                padding:const EdgeInsets.symmetric(horizontal: 5,vertical: 10),
-                                child:Column(
-                                  children: [
-                                    Row(
-                                      crossAxisAlignment:CrossAxisAlignment.start,
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: const [
-                                        Flexible(child: Icon(Icons.star,color:Colors.amber)),
-                                        Flexible(child: Icon(Icons.history, color:Colors.blue)),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 15,),
-
-                                    Text("Past detected Violence", style:txtTheme.headline4,maxLines: 2,overflow: TextOverflow.ellipsis,),
-                                    Text("view perivious violence", style:txtTheme.bodyText2,maxLines: 1,overflow: TextOverflow.ellipsis,)
-                                  ],
-                                ),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+                  //direction: Axis.horizontal,
+                  children: [
+                                ElevatedButton(
+                                  onPressed: (){
+                                   // Get.to(()=>SignUpScreen());
+                                  },
+                                  style:ElevatedButton.styleFrom(
+                                    side:BorderSide.none,
+                                    backgroundColor: Colors.transparent,
+            
                                   ),
-
-
-                                    ),
-                              ),
-
-
-
-                const SizedBox(width: tDashboardCardPadding,),
-
-
-                      Expanded(
-                        child: Column(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color:Colors.redAccent),
-                              padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 10),
-                              child:Column(
-                                children: [
-                                  Row(
-                                    crossAxisAlignment:CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: const [
-                                      Flexible(child:
-                                      Icon(Icons.star,color:Colors.amber)),
-                                      Flexible(child: Icon(Icons.panorama_fish_eye, color:Colors.blue)),
+            
+                                    child: Container(
+                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color:Colors.blue),
+                                  padding:const EdgeInsets.symmetric(horizontal: 5,vertical: 10),
+                                  child:Column(
+                                    children: [
+                                      Row(
+                                        crossAxisAlignment:CrossAxisAlignment.start,
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: const [
+                                          Icon(Icons.star,color:Colors.amber),
+                                           Icon(Icons.history, color:Colors.blue),
+                                        ],
+                                      ),
+                                      const SizedBox(height: 15,),
+            
+                                      Text("Past detected Violence", style:txtTheme.headline4,maxLines: 2,overflow: TextOverflow.ellipsis,),
+                                      Text("view perivious violence", style:txtTheme.bodyText2,maxLines: 1,overflow: TextOverflow.ellipsis,)
                                     ],
                                   ),
-                                  const SizedBox(height: 15,),
-                                  Text("Live Monitoring", style:txtTheme.headline4,maxLines: 2,overflow: TextOverflow.ellipsis,),
-                                  Text("View your workplace", style:txtTheme.bodyText2,maxLines: 1,overflow: TextOverflow.ellipsis,)
-                                ],
-                              ),
+                                    ),
+            
+            
+            
+                                ),
+            
+                  const SizedBox(width: tDashboardCardPadding,),
+            
+            
+                        ElevatedButton(
+                          onPressed: (){
+                            Get.to(()=>VideoStream());
+                          },
+            
+                          style:ElevatedButton.styleFrom(
+                            side:BorderSide.none,
+                            backgroundColor: Colors.transparent,
+                          ),
+            
+            
+                            child: Column(
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color:Colors.blue),
+                                  padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 10),
+                                  child:Column(
+                                    children: [
+                                      Row(
+                                        crossAxisAlignment:CrossAxisAlignment.start,
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: const [
+            
+                                          Icon(Icons.star,color:Colors.amber),
+                                           Icon(Icons.panorama_fish_eye, color:Colors.blue),
+                                        ],
+                                      ),
+                                      const SizedBox(height: 15,),
+                                      Text("Live Monitoring", style:txtTheme.headline4,maxLines: 2,overflow: TextOverflow.ellipsis,),
+                                      Text("View your workplace", style:txtTheme.bodyText2,maxLines: 1,overflow: TextOverflow.ellipsis,)
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
+            
                         ),
-                      ),
-
-
-                  const SizedBox(width:tDashboardCardPadding),
-
-
-
-                      Expanded(
-                        child: Column(
-                          children: [
-                            Container(
-
-                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color:Colors.redAccent),
-                              padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 10),
-                              child:Column(
-                                children: [
-                                  Row(
-                                    crossAxisAlignment:CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: const [
-                                      Flexible(child:
-                                      Icon(Icons.star,color:Colors.amber)),
-                                      Flexible(child: Icon(Icons.phone_android_outlined, color:Colors.blue)),
+            
+            
+                    const SizedBox(width:tDashboardCardPadding),
+            
+            
+            
+                        ElevatedButton(
+                          onPressed: (){},
+                          style:ElevatedButton.styleFrom(
+                            side:BorderSide.none,
+                            backgroundColor: Colors.transparent,
+                          ),
+            
+                            child: Column(
+                              children: [
+                                Container(
+            
+                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color:Colors.blue),
+                                  padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 10),
+                                  child:Column(
+                                    children: [
+                                      Row(
+                                        crossAxisAlignment:CrossAxisAlignment.start,
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: const [
+            
+                                          Icon(Icons.star,color:Colors.amber),
+                                          Icon(Icons.phone_android_outlined, color:Colors.blue),
+                                        ],
+                                      ),
+                                      const SizedBox(height: 15,),
+                                      Text("Change Alert contacts", style:txtTheme.headline4,maxLines: 2,overflow: TextOverflow.ellipsis,),
+                                      Text("Share the emergency to all", style:txtTheme.bodyText2,maxLines: 1,overflow: TextOverflow.ellipsis,)
                                     ],
                                   ),
-                                  const SizedBox(height: 15,),
-                                  Text("Change Alert contacts", style:txtTheme.headline4,maxLines: 2,overflow: TextOverflow.ellipsis,),
-                                  Text("Share the emergency to all", style:txtTheme.bodyText2,maxLines: 1,overflow: TextOverflow.ellipsis,)
-                                ],
-                              ),
+            
+            
+            
+                                )
+                              ],
+                            ),),
+            
+            
+            
+            
+                  ],
+                ),
+          ),
 
 
+           //Notifications
+           Text("Violence Detected",style:txtTheme.headline4?.apply(fontSizeFactor:1.2)),
+          Column(
 
-                            )
-                          ],
-                        ),),
+           children:[
+             SizedBox(
+             width:450,
+             height:100,
+             child:Container(
+               decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color:Colors.redAccent),
+               padding:const EdgeInsets.all(5),
+               child: Row(
+                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                 children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("Violence detected on",
+                      style:txtTheme.headlineSmall,
+                      maxLines: 2, ),
+                      Text("date and time , location",
+                      style: txtTheme.bodySmall,
+                      overflow: TextOverflow.ellipsis,),
+
+                    ],
+                  ),
+                   IconButton(onPressed: (){}, icon: const Icon(Icons.arrow_forward,)),
+                 ],
+
+               ),
 
 
-                ],
+             ),
+           ),
+
+             const SizedBox(height:20),
+
+
+              SizedBox(
+                width:450,
+                height:100,
+                child:Container(
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color:Colors.redAccent),
+                  padding:const EdgeInsets.all(5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("Violence detected on",
+                            style:txtTheme.headlineSmall,
+                            maxLines: 2, ),
+                          Text("date and time , location",
+                            style: txtTheme.bodySmall,
+                            overflow: TextOverflow.ellipsis,),
+
+                        ],
+                      ),
+                      IconButton(onPressed: (){}, icon: const Icon(Icons.arrow_forward,)),
+                    ],
+
+                  ),
+
+
+                ),
               ),
 
+           ]
+          ),
+
+
+
+
+           const SizedBox(height:20),
+            //Alert button
+            Align(
+            alignment: Alignment.bottomCenter, // Position at bottom right
+            child: Padding(
+            padding: const EdgeInsets.all(75.0), // Add some padding
+            child: SizedBox(
+              width:100,
+              height:100,
+              child: FloatingActionButton(
+              onPressed: () {
+              // Handle button press action (e.g., show alert dialog)
+              print('Alert button pressed!');
+              },
+              backgroundColor: Colors.red,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children:[
+                  Text("Alert",style:TextStyle(
+                    color:Colors.white,
+                    fontSize: 25,
+                  ),
+                  ),
+                  Icon(
+              Icons.notifications,
+              color: Colors.white,
+              ),
+                ],
+              ),
+              ),
+            ),
+            ),
+            ),
 
 
             ],

@@ -25,4 +25,6 @@ const String tTopCourseImage1="assets/images/dashboard/past_detected.png";
 const String tTopCourseImage2="assets/images/dashboard/alert.png";
 const String tTopCourseImage3="assets/images/dashboard/live.png";
 
+const String tProfileImage="assets/images/dashboard/dash-person.png";
 
+const String tDashBoardBannerImage="assets/images/dashboard/banner.jpg";

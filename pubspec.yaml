@@ -44,6 +44,7 @@ dependencies:
   flutter_otp_text_field: ^1.1.2+1
   firebase_core: ^2.28.0
   firebase_auth: ^4.19.0
+  web_socket_channel: ^2.2.0
 
 
 
@@ -61,13 +62,13 @@ dev_dependencies:
 flutter_native_splash:
   color: "#abf7b1"
   color_dark: "#272727"
-  image: assets/images/censuslogo.png
-  image_dark: assets/images/censuslogo.png
+  image: assets/images/logo_light.png
+  image_dark: assets/images/logo_light.png
 
 android_12:
-  image: assets/images/censuslogo.png
+  image: assets/images/logo_light.png
   icon_background_color: "#abf7b1"
-  image_dark: assets/images/censuslogo.png
+  image_dark: assets/images/logo_light.png
   icon_background_color_dark: "#272727"
 
 
@@ -86,7 +87,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/on_boarding_images/
-    - assets/images/censuslogo.png
+    - assets/images/logo_light.png
     - assets/logo/
     - assets/images/dashboard/
 

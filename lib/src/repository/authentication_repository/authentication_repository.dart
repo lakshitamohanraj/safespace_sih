@@ -69,7 +69,9 @@ Future<bool> verifyOTP(String otp) async
   Future<void> loginWithEmailAndPassword(String email,String password) async {
     try{
       await _auth.signInWithEmailAndPassword(email: email, password: password);
+      firebaseUser.value!=null? Get.offAll(()=>  DashBoard()):Get.to(()=>const Welcome());
     } on FirebaseAuthException catch(e){
+      print('ERROR IN LOGIN-,${e.message}');
     } catch(_){
     }
   }

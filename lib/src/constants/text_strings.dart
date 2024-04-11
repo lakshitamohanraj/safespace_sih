@@ -5,8 +5,8 @@ const String tLogin="Login";
 const String tSignup="Signup";
 
 
-const String tAppName=".census/";
-const String tAppTagLine= "learn to code, \nFree for everyone";
+const String tAppName=".safespace/";
+const String tAppTagLine= "Safer space for employees, \nPromote healthier env";
 
 
 
@@ -29,6 +29,7 @@ const String tLoginTitle="Welcome Back!";
 const String tLoginSubTitle="Make it Work, make it right make it fast";
 const String tRememberMe="Remember Me?";
 const String tAlreadyHaveAnAccount="Already have an Account? ";
+const String tLogout="Logout";
 
 const String tForgotPassword="Forgot Password?";
 const String tEmail="E-mail";
@@ -78,6 +79,35 @@ const String tDashboardBannerTitle2="JAVA!";
 const String tDashboardBannerSubTitle="10 lessons !";
 const String tDashboardButton="View all !";
 const String tDashboardTopCourses="Top Courses!";
+
+
+//past detected
+const String tPastDetected="Past Detected";
+
+//profile screen text
+
+const String tProfile="Profile";
+const String tEditProfile="Edit Profile";
+const String tLogoutDialogHeading="Logout";
+const String tProfileHeading="Safe Space";
+const String tProfileSubHeading="lakshita@spacepsac.com";
+
+
+const String tMenu5=tLogout;
+const String tMenu1="Setting";
+const String tMenu4="Information";
+const String tMenu2="Billing Details";
+const String tMenu3="User Management";
+
+
+const String tDelete="Delete";
+const String tJoined="Joined";
+
+
+
+
+
+
 
 
 
