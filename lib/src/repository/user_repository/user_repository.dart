@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 class UserRepository extends GetxController{
   static UserRepository get instance => Get.find();
 
+  final _auth = FirebaseAuth.instance;
 
   final _db=FirebaseFirestore.instance;
   createUser(UserModel user) async{
@@ -46,6 +47,49 @@ Future<UserModel> getUserDetails(String email) async{
     return userData;
 
   }
+
+  Future<void> updateUserRecord(UserModel user) async{
+    await _db.collection("Users").doc(user.id).update(user.toJson());
+  }
+
+  Future<void> deleteUser(String email) async {
+    // 1. Fetch user by email
+    final user = await getUserDetails(email);
+
+    if (user != null) {
+      // 2. Delete user from Firebase Authentication (if successful)
+      await _auth.currentUser!.delete().then((_) async {
+        // 3. Optionally delete user document from Firestore
+        await _db.collection("Users").doc(user.id).delete();
+        Get.snackbar(
+          "Success",
+          "User with email $email has been deleted.",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.green.withOpacity(0.1),
+          colorText: Colors.green,
+        );
+      }).catchError((error) {
+        Get.snackbar(
+          "Error",
+          "Failed to delete user: ${error.toString()}",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.redAccent.withOpacity(0.1),
+          colorText: Colors.red,
+        );
+      });
+    } else {
+      Get.snackbar(
+        "Error",
+        "User with email $email not found.",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.redAccent.withOpacity(0.1),
+        colorText: Colors.red,
+      );
+    }
+  }
+
+
+
 
   
 

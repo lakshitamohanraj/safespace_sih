@@ -5,6 +5,7 @@ import 'package:censusdemo/src/constants/image_strings.dart';
 import 'package:censusdemo/src/constants/sizes.dart';
 import 'package:censusdemo/src/features/core/screens/profile/update_profile_screen.dart';
 import 'package:censusdemo/src/features/core/screens/profile/widgets/profile_menu.dart';
+import 'package:censusdemo/src/features/core/screens/team_member_details/remove_member.dart';
 import 'package:censusdemo/src/features/core/screens/team_member_details/team_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,10 +21,13 @@ class ProfileScreen extends StatelessWidget {
     var isDark=MediaQuery.of(context).platformBrightness==Brightness.dark;
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(onPressed: (){},icon:const Icon(Icons.arrow_back)),
+        leading: IconButton(onPressed: (){
+          Get.back();
+        },icon:const Icon(Icons.arrow_back)),
         title:Text(tProfileHeading,style:Theme.of(context).textTheme.headline4),
         actions: [
-          IconButton(onPressed: (){}, icon: Icon(isDark? Icons.light_mode:Icons.dark_mode)),
+          IconButton(onPressed: (){
+          }, icon: Icon(isDark? Icons.light_mode:Icons.dark_mode)),
         ],
       ),
       body:SingleChildScrollView(
@@ -87,11 +91,13 @@ class ProfileScreen extends StatelessWidget {
               },
               ),
               ProfileMenuWidget(
-                title:"User Management",icon:Icons.verified_user,onPress: (){
+                title:"Team Members",icon:Icons.verified_user,onPress: (){
                   Get.to(()=> TeamListScreen());
               },
               ),
-              ProfileMenuWidget(title:"Remove User",icon:Icons.remove,onPress: (){},),
+              ProfileMenuWidget(title:"Remove User",icon:Icons.remove,onPress: (){
+                Get.to(()=> RemoveMemberScreen());
+              },),
               const Divider(),
               const SizedBox(height:10),
               ProfileMenuWidget(title:"Information" ,icon:Icons.info_outline,onPress: (){},),

@@ -12,7 +12,7 @@ class TeamListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final controller =Get.put(ProfileController());
+    final controller = Get.put(ProfileController());
     return Scaffold(
       appBar: AppBar(
 
@@ -35,7 +35,7 @@ class TeamListScreen extends StatelessWidget {
             {
               if(snapshot.connectionState==ConnectionState.done){
                 if(snapshot.hasData){
-                  UserModel userData= snapshot.data as UserModel;
+                //  UserModel userData= snapshot.data as UserModel;
                   return ListView.builder(
                     shrinkWrap: true,
                     itemCount: snapshot.data!.length,
@@ -56,22 +56,6 @@ class TeamListScreen extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height:10),
-                          ListTile(
-                            iconColor: Colors.blue,
-                            tileColor: Colors.blue.withOpacity(0.1),
-                            leading:const Icon(Icons.verified_user),
-                            title:Text("Name :${snapshot.data![index].fullName}"),
-                            subtitle: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(snapshot.data![index].phoneNo),
-                                Text(snapshot.data![index].email),
-                              ],
-                            ),
-                          ),
-
-
-
                         ],
                       );
                     }
@@ -88,9 +72,6 @@ class TeamListScreen extends StatelessWidget {
                 return const Center(child: CircularProgressIndicator(),);
               }
             },
-
-
-
           ),
         ),
       ),

@@ -33,7 +33,7 @@ class FormHeaderWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Image(image:AssetImage(image),height:size.height*0.2),
-        Text(title,style:Theme.of(context).textTheme.headline1),
+        Text(title,style:Theme.of(context).textTheme.headline2),
         Text(subTitle,textAlign:textAlign,style:Theme.of(context).textTheme.bodyText1),
       ],
     );

@@ -92,6 +92,7 @@ flutter:
     - assets/images/logo_light.png
     - assets/images/banner.jpg
     - assets/logo/
+    - assets/images/sample_violence/
     - assets/images/dashboard/
 
   # An image asset can refer to one or more resolution-specific "variants", see

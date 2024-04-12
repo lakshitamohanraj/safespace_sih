@@ -21,8 +21,8 @@ const String tOnBoardingCounter2 = "5/34";
 const String tOnBoardingCounter3 = "5/5";
 
 
-const String tWelcomeTitle="welcomeeee";
-const String tWelcomeSubTitle="Lets build something together";
+const String tWelcomeTitle="Make your People Safer";
+const String tWelcomeSubTitle="Lets Safe guard Your People";
 
 
 const String tLoginTitle="Welcome Back!";

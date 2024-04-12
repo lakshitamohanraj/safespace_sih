@@ -15,7 +15,7 @@ class VideoStream extends StatefulWidget {
 }
 
 class _VideoStreamState extends State<VideoStream> {
-  final WebSocket _socket = WebSocket("ws://192.168.0.162:5000");
+  final WebSocket _socket = WebSocket("ws://192.168.0.121:5000");
   bool _isConnected = false;
 
   final _data = [
@@ -37,50 +37,6 @@ class _VideoStreamState extends State<VideoStream> {
     });
   }
 
-
-  // void _showBottomSheet() {
-  //   showModalBottomSheet(
-  //     context: context,
-  //     builder: (context) => _buildBottomSheetContent(),
-  //   );
-  // }
-  // Widget _buildBottomSheetContent() {
-  //
-  //   return Container(
-  //     padding: EdgeInsets.all(20.0),
-  //     child: Column(
-  //       mainAxisSize: MainAxisSize.min, // Limits bottom sheet height
-  //       children: [
-  //         Text('Data Information', style: TextStyle(fontSize: 18.0)),
-  //         SizedBox(height: 10.0),
-  //         Row(
-  //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //           children: [
-  //             Text('Time', style: TextStyle(fontWeight: FontWeight.bold)),
-  //             Text('Location', style: TextStyle(fontWeight: FontWeight.bold)),
-  //             Text('Violence Detected', style: TextStyle(fontWeight: FontWeight.bold)),
-  //           ],
-  //         ),
-  //         Divider(),
-  //         ListView.builder(
-  //           shrinkWrap: true, // Prevents excessive scrolling
-  //           itemCount: _data.length,
-  //           itemBuilder: (context, index) {
-  //             final item = _data[index];
-  //             return Row(
-  //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //               children: [
-  //                 Text("12.30"),
-  //                 Text("Chennai korattur"),
-  //                 Text('True'),
-  //               ],
-  //             );
-  //           },
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
 
   @override
   Widget build(BuildContext context) {

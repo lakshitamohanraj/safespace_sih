@@ -22,12 +22,15 @@ class SignUpScreen extends StatelessWidget {
             child:Column(
               children:[
                  const FormHeaderWidget(
-                  image: tWelcomeScreenImage,
+                  image: tLogoDark,
                     title: tSignUpTitle,
                     subTitle: tSignUpSubTitle,
                 ),
 
                 const SignUpFormWidget(),
+
+
+
                  Column(
                    children: [
                      const Text("OR"),

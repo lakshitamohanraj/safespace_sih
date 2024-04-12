@@ -28,3 +28,7 @@ const String tTopCourseImage3="assets/images/dashboard/live.png";
 const String tProfileImage="assets/images/dashboard/dash-person.png";
 
 const String tDashBoardBannerImage="assets/images/dashboard/banner.jpg";
+
+//logo image
+const String tLogoDark="assets/logo/new_logo_dark.webp";
+const String tLogoLight="assets/logo/new_logo_dark.webp";

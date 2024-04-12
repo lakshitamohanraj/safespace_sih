@@ -7,7 +7,7 @@ import 'package:censusdemo/src/constants/sizes.dart';
 import 'package:censusdemo/src/constants/text_strings.dart';
 import 'package:censusdemo/src/features/authentication/screens/login/login_screen.dart';
 import 'package:censusdemo/src/features/authentication/screens/signup/signup_screen.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -46,7 +46,7 @@ class Welcome extends StatelessWidget{
              child:Column(
                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                children: [
-                 Image(image: const AssetImage(tWelcomeScreenImage),
+                 Image(image: const AssetImage(tLogoDark),
                  height:height*0.6),
                  Column(
                    children: [

@@ -37,6 +37,16 @@ class UpdateProfileScreen extends StatelessWidget {
                if(snapshot.connectionState==ConnectionState.done){
                     if(snapshot.hasData){
                       UserModel userData= snapshot.data as UserModel;
+
+
+                      //controllers
+                      final email=TextEditingController(text:userData.email);
+                      final password=TextEditingController(text:userData.password);
+                      final fullName=TextEditingController(text:userData.fullName);
+                      final phoneNo=TextEditingController(text:userData.phoneNo);
+
+
+
                       return Column(
                         children: [
                           Stack(
@@ -71,8 +81,8 @@ class UpdateProfileScreen extends StatelessWidget {
                               child:Column(
                                 children: [
                                   TextFormField(
-                                    initialValue: userData.fullName,
-                                    // controller:controller.email,
+
+                                    controller: fullName,
                                     decoration: const InputDecoration(
                                       prefixIcon: Icon(Icons.person_outline_outlined),
                                       labelText: tFullName,
@@ -84,8 +94,8 @@ class UpdateProfileScreen extends StatelessWidget {
                                   const SizedBox(height: tFormHeight - 20,),
 
                                   TextFormField(
-                                    initialValue: userData.email,
-                                    // controller:controller.email,
+
+                                     controller:email,
                                     decoration: const InputDecoration(
                                       prefixIcon: Icon(Icons.person_outline_outlined),
                                       labelText: tEmail,
@@ -97,8 +107,8 @@ class UpdateProfileScreen extends StatelessWidget {
                                   const SizedBox(height: tFormHeight - 20,),
 
                                   TextFormField(
-                                    //  controller:controller.password,
-                                    initialValue: userData.phoneNo,
+                                    controller:phoneNo,
+
                                     decoration: const InputDecoration(
                                       prefixIcon: Icon(Icons.phone_android_outlined),
                                       labelText: tPhoneNo,
@@ -110,8 +120,8 @@ class UpdateProfileScreen extends StatelessWidget {
                                   const SizedBox(height: tFormHeight - 20,),
 
                                   TextFormField(
-                                    initialValue: userData.password,
-                                    //  controller:controller.password,
+
+                                     controller:password,
                                     decoration: const InputDecoration(
                                       prefixIcon: Icon(Icons.password),
                                       labelText: tPassword,
@@ -128,7 +138,15 @@ class UpdateProfileScreen extends StatelessWidget {
                                   SizedBox(
                                     width:double.infinity,
                                     child:ElevatedButton(
-                                      onPressed: (){},
+                                      onPressed: () async{
+                                        final userData=UserModel(
+                                            email: email.text.trim(),
+                                            fullName: fullName.text.trim(),
+                                            password: password.text.trim(),
+                                            phoneNo: phoneNo.text.trim(),);
+                                        await controller.updateRecord(userData);
+
+                                      },
                                       style:ElevatedButton.styleFrom(
                                           backgroundColor: tPrimaryColor,side: BorderSide.none,
                                           shape:const StadiumBorder()),

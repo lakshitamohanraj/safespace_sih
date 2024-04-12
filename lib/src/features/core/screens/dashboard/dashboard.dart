@@ -3,13 +3,19 @@ import 'package:censusdemo/src/constants/image_strings.dart';
 import 'package:censusdemo/src/constants/sizes.dart';
 import 'package:censusdemo/src/constants/text_strings.dart';
 import 'package:censusdemo/src/features/authentication/screens/signup/signup_screen.dart';
+import 'package:censusdemo/src/features/core/screens/dashboard/steps_to_connect.dart';
+import 'package:censusdemo/src/features/core/screens/past_violence/past_violence_list_screen.dart';
+import 'package:censusdemo/src/features/core/screens/team_member_details/choose_notify_screen.dart';
 import 'package:censusdemo/src/utils/theme/widget_themes/elevated_button_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:google_fonts/google_fonts.dart';
 
+import '../../controller/past_violence_controller.dart';
+import '../../models/violence_model.dart';
 import '../live_monitoring/video_streaming.dart';
 import '../profile/profile_screen.dart';
 
@@ -17,6 +23,8 @@ class DashBoard extends StatelessWidget {
    DashBoard({super.key});
 
   bool violenceDetected = false;
+
+   final controller = Get.put(PastViolenceController());
 
   @override
   Widget build(BuildContext context) {
@@ -52,48 +60,13 @@ class DashBoard extends StatelessWidget {
             children: [
               Text("SafeSpace : Promoting healthy workplace",style: txtTheme.bodyText1),
               Text("Keep Workplace Safer",style: txtTheme.bodyText2),
+
               const SizedBox(height:tDashboardCardPadding),
 
+              const Banner(),
 
-
-          Stack( // Stack elements on top of each other
-            children: [
-              // Banner image (replace with your image provider)
-              Image.asset("assets/images/banner.jpg",
-                height: 200.0, // Adjust height as needed
-                width: double.infinity, // Fills horizontal space
-                fit: BoxFit.cover, // Cover the container
-              ),
-              Positioned( // Position slogan text
-                top: 80.0, // Adjust position from top
-                left: 16.0, // Adjust position from left
-                child: Text(
-                  'Slogans to keep here',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24.0,
-                  ),
-                ),
-              ),
-              Positioned( // Position app logo
-                top: 16.0, // Adjust position from top
-                left: 16.0, // Adjust position from left
-                child: Image.asset(
-                  "assets/images/logo_light.png",
-                  height: 50.0, // Adjust height as needed
-                  width: 50.0, // Adjust width as needed
-                ),
-              ),
-            ],
-          ),
-
-
-
-
-
-
-
-
+           const SizedBox(height:20) ,
+              const ConnectCamButton(),
 
               //3 buttons
           SingleChildScrollView(
@@ -101,127 +74,16 @@ class DashBoard extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
                   //direction: Axis.horizontal,
-                  children: [
-                                ElevatedButton(
-                                  onPressed: (){
-                                   // Get.to(()=>SignUpScreen());
-                                  },
-                                  style:ElevatedButton.styleFrom(
-                                    side:BorderSide.none,
-                                    backgroundColor: Colors.transparent,
-            
-                                  ),
-            
-                                    child: Container(
-                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color:Colors.blue),
-                                  padding:const EdgeInsets.symmetric(horizontal: 5,vertical: 10),
-                                  child:Column(
-                                    children: [
-                                      Row(
-                                        crossAxisAlignment:CrossAxisAlignment.start,
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: const [
-                                          Icon(Icons.star,color:Colors.amber),
-                                           Icon(Icons.history, color:Colors.blue),
-                                        ],
-                                      ),
-                                      const SizedBox(height: 15,),
-            
-                                      Text("Past detected Violence", style:txtTheme.headline4,maxLines: 2,overflow: TextOverflow.ellipsis,),
-                                      Text("view perivious violence", style:txtTheme.bodyText2,maxLines: 1,overflow: TextOverflow.ellipsis,)
-                                    ],
-                                  ),
-                                    ),
-            
-            
-            
-                                ),
-            
-                  const SizedBox(width: tDashboardCardPadding,),
-            
-            
-                        ElevatedButton(
-                          onPressed: (){
-                            Get.to(()=>VideoStream());
-                          },
-            
-                          style:ElevatedButton.styleFrom(
-                            side:BorderSide.none,
-                            backgroundColor: Colors.transparent,
-                          ),
-            
-            
-                            child: Column(
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color:Colors.blue),
-                                  padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 10),
-                                  child:Column(
-                                    children: [
-                                      Row(
-                                        crossAxisAlignment:CrossAxisAlignment.start,
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: const [
-            
-                                          Icon(Icons.star,color:Colors.amber),
-                                           Icon(Icons.panorama_fish_eye, color:Colors.blue),
-                                        ],
-                                      ),
-                                      const SizedBox(height: 15,),
-                                      Text("Live Monitoring", style:txtTheme.headline4,maxLines: 2,overflow: TextOverflow.ellipsis,),
-                                      Text("View your workplace", style:txtTheme.bodyText2,maxLines: 1,overflow: TextOverflow.ellipsis,)
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-            
-                        ),
-            
-            
+                  children:  [
+                          const PastDetectedButton(),
+
+                   const SizedBox(width: tDashboardCardPadding,),
+                        const LiveStreamButton(),
+
                     const SizedBox(width:tDashboardCardPadding),
+                    const NotifyMemberButton(),
             
-            
-            
-                        ElevatedButton(
-                          onPressed: (){},
-                          style:ElevatedButton.styleFrom(
-                            side:BorderSide.none,
-                            backgroundColor: Colors.transparent,
-                          ),
-            
-                            child: Column(
-                              children: [
-                                Container(
-            
-                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color:Colors.blue),
-                                  padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 10),
-                                  child:Column(
-                                    children: [
-                                      Row(
-                                        crossAxisAlignment:CrossAxisAlignment.start,
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: const [
-            
-                                          Icon(Icons.star,color:Colors.amber),
-                                          Icon(Icons.phone_android_outlined, color:Colors.blue),
-                                        ],
-                                      ),
-                                      const SizedBox(height: 15,),
-                                      Text("Change Alert contacts", style:txtTheme.headline4,maxLines: 2,overflow: TextOverflow.ellipsis,),
-                                      Text("Share the emergency to all", style:txtTheme.bodyText2,maxLines: 1,overflow: TextOverflow.ellipsis,)
-                                    ],
-                                  ),
-            
-            
-            
-                                )
-                              ],
-                            ),),
-            
-            
-            
-            
+
                   ],
                 ),
           ),
@@ -229,79 +91,168 @@ class DashBoard extends StatelessWidget {
 
            //Notifications
            Text("Violence Detected",style:txtTheme.headline4?.apply(fontSizeFactor:1.2)),
-          Column(
+          // Column(
+          //
+          //  children:[
+          //    SizedBox(
+          //    width:450,
+          //    height:100,
+          //    child:Container(
+          //      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color:Colors.redAccent),
+          //      padding:const EdgeInsets.all(5),
+          //      child: Row(
+          //        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //        children: [
+          //         Column(
+          //           mainAxisAlignment: MainAxisAlignment.center,
+          //           children: [
+          //             Text("Violence detected on",
+          //             style:txtTheme.headlineSmall,
+          //             maxLines: 2, ),
+          //             Text("date and time , location",
+          //             style: txtTheme.bodySmall,
+          //             overflow: TextOverflow.ellipsis,),
+          //
+          //           ],
+          //         ),
+          //          IconButton(onPressed: (){}, icon: const Icon(Icons.arrow_forward,)),
+          //        ],
+          //
+          //      ),
+          //
+          //
+          //    ),
+          //  ),
+          //
+          //    const SizedBox(height:20),
+          //
+          //
+          //     SizedBox(
+          //       width:450,
+          //       height:100,
+          //       child:Container(
+          //         decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color:Colors.redAccent),
+          //         padding:const EdgeInsets.all(5),
+          //         child: Row(
+          //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //           children: [
+          //             Column(
+          //               mainAxisAlignment: MainAxisAlignment.center,
+          //               children: [
+          //                 Text("Violence detected on",
+          //                   style:txtTheme.headlineSmall,
+          //                   maxLines: 2, ),
+          //                 Text("date and time , location",
+          //                   style: txtTheme.bodySmall,
+          //                   overflow: TextOverflow.ellipsis,),
+          //
+          //               ],
+          //             ),
+          //             IconButton(onPressed: (){}, icon: const Icon(Icons.arrow_forward,)),
+          //           ],
+          //         ),
+          //
+          //       ),
+          //     ),
+          //  ]
+          // ),
 
-           children:[
-             SizedBox(
-             width:450,
-             height:100,
-             child:Container(
-               decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color:Colors.redAccent),
-               padding:const EdgeInsets.all(5),
-               child: Row(
-                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                 children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text("Violence detected on",
-                      style:txtTheme.headlineSmall,
-                      maxLines: 2, ),
-                      Text("date and time , location",
-                      style: txtTheme.bodySmall,
-                      overflow: TextOverflow.ellipsis,),
 
-                    ],
-                  ),
-                   IconButton(onPressed: (){}, icon: const Icon(Icons.arrow_forward,)),
-                 ],
+              // SingleChildScrollView(
+              //   child: Container(
+              //       padding:const EdgeInsets.all(tDefaultSize),
+              //       child:FutureBuilder<List<ViolenceModel>>(
+              //         future: controller.getOnly2(),
+              //
+              //         builder: (context,snapshot)
+              //         {
+              //           if(snapshot.connectionState==ConnectionState.done){
+              //             if(snapshot.hasData){
+              //               //  UserModel userData= snapshot.data as UserModel;
+              //               return ListView.builder(
+              //                   shrinkWrap: true,
+              //                   itemCount: snapshot.data!.length,
+              //                   itemBuilder: (c,index){
+              //                     return Column(
+              //                       children: [
+              //                         ListTile(
+              //                           iconColor: Colors.red,
+              //                           tileColor: Colors.red.withOpacity(0.1),
+              //                           leading: ClipRRect( // Clip image for rounded corners
+              //                             borderRadius: BorderRadius.circular(8.0), // Adjust corner radius
+              //                             child: Image.asset(
+              //                               "assets/images/sample_violence/beating.jpeg",
+              //                               fit: BoxFit.cover, // Cover the container
+              //                               width: 50.0, // Adjust image width
+              //                               height: 50.0, // Adjust image height
+              //                             ),
+              //                           ),
+              //                           trailing:IconButton( // Use IconButton for trailing button
+              //                             icon: const Icon(Icons.arrow_forward_ios), // Icon for navigation
+              //                             onPressed: () {},
+              //                           ),
+              //                           title:Text("Type :${snapshot.data![index].typeOfViolence}"),
+              //                           subtitle: Column(
+              //                             crossAxisAlignment: CrossAxisAlignment.start,
+              //                             children: [
+              //                               Text("TimeStamp: ${snapshot.data![index].timeStamp}"),
+              //                               Text("Location: ${snapshot.data![index].location}"),
+              //                               Text("Severity: ${snapshot.data![index].severity}"),
+              //                             ],
+              //                           ),
+              //                         ),
+              //                         const SizedBox(height:10),
+              //                       ],
+              //                     );
+              //                   }
+              //               );
+              //             }
+              //             else if(snapshot.hasError){
+              //               return Center(child: Text(snapshot.error.toString()));
+              //               print(snapshot.error);
+              //             }else{
+              //               return const Center(child: Text('Something went wrong'));
+              //             }
+              //           }
+              //           else{
+              //             return const Center(child: CircularProgressIndicator(),);
+              //           }
+              //         },
+              //
+              //
+              //
+              //       ),
+              //     ),
+              // ),
 
-               ),
-
-
-             ),
-           ),
-
-             const SizedBox(height:20),
-
-
-              SizedBox(
-                width:450,
-                height:100,
-                child:Container(
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color:Colors.redAccent),
-                  padding:const EdgeInsets.all(5),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text("Violence detected on",
-                            style:txtTheme.headlineSmall,
-                            maxLines: 2, ),
-                          Text("date and time , location",
-                            style: txtTheme.bodySmall,
-                            overflow: TextOverflow.ellipsis,),
-
-                        ],
-                      ),
-                      IconButton(onPressed: (){}, icon: const Icon(Icons.arrow_forward,)),
-                    ],
-
-                  ),
-
-
-                ),
-              ),
-
-           ]
+          ListTile(
+                                      iconColor: Colors.red,
+                                      tileColor: Colors.red.withOpacity(0.1),
+                                      leading: ClipRRect( // Clip image for rounded corners
+                                        borderRadius: BorderRadius.circular(8.0), // Adjust corner radius
+                                        child: Image.asset(
+                                          "assets/images/sample_violence/beating.jpeg",
+                                          fit: BoxFit.cover, // Cover the container
+                                          width: 50.0, // Adjust image width
+                                          height: 50.0, // Adjust image height
+                                        ),
+                                      ),
+                                      trailing:IconButton( // Use IconButton for trailing button
+                                        icon: const Icon(Icons.arrow_forward_ios), // Icon for navigation
+                                        onPressed: () {},
+                                      ),
+                                      title:Text("Type :Assault"),
+                                      subtitle: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text("TimeStamp: 2024:9:03 23:00:00"),
+                                          Text("Location: halfway"),
+                                          Text("Severity: 0.677"),
+                                        ],
+                                      ),
           ),
 
-
-
-
-           const SizedBox(height:20),
+           const SizedBox(height:30),
             //Alert button
             Align(
             alignment: Alignment.bottomCenter, // Position at bottom right
@@ -330,115 +281,225 @@ class DashBoard extends StatelessWidget {
               ),
                 ],
               ),
+
               ),
-            ),
-            ),
-            ),
 
-
+            ),
+            ),
+            ),
             ],
           ),
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 
 
 
+}
 
-  Widget _buildHeader() {
-    return Container(
-      padding: EdgeInsets.all(20.0),
-      child: Row(
-        children: [
-          Image.asset(tBannerImage2, height: 50.0), // Replace with your logo path
-          SizedBox(width: 20.0),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Welcome Back,',
-                style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-              ),
-              Text(
-                'Lakshita', // Replace with user name
-                style: TextStyle(fontSize: 16.0),
-              ),
-            ],
-          ),
-        ],
+class NotifyMemberButton extends StatelessWidget {
+  const NotifyMemberButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: (){
+        Get.to(()=>ChooseMemberNotifyScreen());
+      },
+      style:ElevatedButton.styleFrom(
+        side:BorderSide.none,
+        backgroundColor: Colors.transparent,
       ),
-    );
-  }
 
-  Widget _buildButtonsRow() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-
-      children: [
-        _buildButton('Past Detected', Icons.history, () {
-          // Handle 'Past Detected' button press
-          // Navigate to a past detections screen or perform relevant actions
-        }),
-        SizedBox(height: tDefaultSize,),
-        _buildButton('Live Monitoring', Icons.panorama_fish_eye, () {
-          // Handle 'Live Monitoring' button press
-          // Navigate to a live monitoring screen or initiate video stream processing
-        }),
-        SizedBox(height: tDefaultSize,),
-        _buildButton('Alter Contacts', Icons.phone_android_outlined, () {
-          // Handle 'Alter Contacts' button press
-          // Navigate to a contact management screen or perform contact update actions
-        }),
-        SizedBox(height: tDefaultSize,),
-      ],
-    );
-  }
-
-  Widget _buildButton(String text, IconData icon, VoidCallback onPressed) {
-    return ElevatedButton.icon(
-      onPressed: onPressed,
-      icon: Icon(icon, size: 20.0),
-      label: Text(text),
-      style: ElevatedButton.styleFrom(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
-
-      ),
-    );
-  }
-
-
-  Widget _buildViolenceDetectedSection() {
-    return Visibility(
-      visible: violenceDetected,
-      child: Container(
-        padding: EdgeInsets.all(15.0),
-        decoration: BoxDecoration(
-          color: Colors.redAccent.withOpacity(0.2),
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: Column(
           children: [
-            Text(
-              'Violence Detected!',
-              style: TextStyle(color: Colors.red, fontSize: 18.0),
-            ),
-            SizedBox(width: 10.0),
-            Icon(
-              Icons.warning,
-              color: Colors.red,
+            Container(
+
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color:tButton3bg),
+              padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 10),
+              child:Column(
+                children: [
+                  Row(
+                    crossAxisAlignment:CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+
+                      Icon(Icons.star,color:tYellowColor),
+                      Icon(Icons.phone_android_outlined, color:tWhiteColor),
+                    ],
+                  ),
+                  const SizedBox(height: 15,),
+                  Text("Change Alerts to Member", style: GoogleFonts.montserrat(
+                    color:Colors.white,
+                    fontSize:24,
+                  ),maxLines: 2,overflow: TextOverflow.ellipsis,),
+                  Text("Share the emergency to all", style: GoogleFonts.montserrat(
+                    color:Colors.white,
+                  ),maxLines: 1,overflow: TextOverflow.ellipsis,)
+                ],
+              ),
+
+
+
+            )
+          ],
+        ),);
+  }
+}
+
+class LiveStreamButton extends StatelessWidget {
+  const LiveStreamButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: (){
+        Get.to(()=>VideoStream());
+      },
+
+      style:ElevatedButton.styleFrom(
+        side:BorderSide.none,
+        backgroundColor: Colors.transparent,
+      ),
+
+
+        child: Column(
+          children: [
+            Container(
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color:tButton3bg),
+              padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 10),
+              child:Column(
+                children: [
+                  Row(
+                    crossAxisAlignment:CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+
+                      Icon(Icons.star,color:tYellowColor),
+                       Icon(Icons.panorama_fish_eye, color:tWhiteColor),
+                    ],
+                  ),
+                  const SizedBox(height: 15,),
+                  Text("Live Monitoring", style: GoogleFonts.montserrat(
+                    color:Colors.white,
+                    fontSize:24,
+                  ),maxLines: 2,overflow: TextOverflow.ellipsis,),
+                  Text("View your workplace", style: GoogleFonts.montserrat(
+                    color:Colors.white,
+                  ),maxLines: 1,overflow: TextOverflow.ellipsis,)
+                ],
+              ),
             ),
           ],
         ),
+
+    );
+  }
+}
+
+class PastDetectedButton extends StatelessWidget {
+  const PastDetectedButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: (){
+        Get.to(()=>PastViolenceScreen());
+      },
+      style:ElevatedButton.styleFrom(
+        side:BorderSide.none,
+        backgroundColor: Colors.transparent,
+      ),
+
+        child: Container(
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color:tButton3bg),
+      padding:const EdgeInsets.symmetric(horizontal: 5,vertical: 10),
+      child:Column(
+        children: [
+          Row(
+            crossAxisAlignment:CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: const [
+              Icon(Icons.star,color:tYellowColor),
+               Icon(Icons.history, color:tWhiteColor),
+            ],
+          ),
+          const SizedBox(height: 15,),
+
+          Text("Past detected Violence",
+            style: GoogleFonts.montserrat(
+              color:Colors.white,
+              fontSize:24,
+            ),
+          ),
+              //fontFamily: txtTheme.headline4,),maxLines: 2,overflow: TextOverflow.ellipsis,),
+          Text("view perivious violence", style: GoogleFonts.poppins(
+            color:Colors.white,
+
+          ),maxLines: 1,overflow: TextOverflow.ellipsis,),
+        ],
+      ),
+        ),
+
+    );
+  }
+}
+
+class ConnectCamButton extends StatelessWidget {
+  const ConnectCamButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width:200,
+      child:ElevatedButton(
+          onPressed: (){
+            Get.to(()=>const ConnectCamScreen());
+          },
+          child:const Text("Connect Device-Cam",style:TextStyle(color:tDarkColor)),
+          style:ElevatedButton.styleFrom(
+            backgroundColor: tPrimaryColor,
+            side:BorderSide.none,
+            shape: const StadiumBorder(),
+          )
       ),
     );
   }
+}
 
+class Banner extends StatelessWidget {
+  const Banner({
+    super.key,
+  });
 
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      tileColor: tPrimaryColor.withOpacity(0.1),
+      leading: Image.asset(tLogoDark,
+        height: 500.0,
+        fit: BoxFit.cover,
+      ),
+      title: Text('Why need SafeSpace?',style:TextStyle(
+        fontSize: 24.0,
+      ),),
+      subtitle:
+      Text('To Safeguard workers and people,manage them with a team',style:TextStyle(
+        fontSize: 20.0,
+      ),),
+
+    );
+  }
 }
 
 
