@@ -5,6 +5,7 @@ import 'package:censusdemo/src/constants/image_strings.dart';
 import 'package:censusdemo/src/constants/sizes.dart';
 import 'package:censusdemo/src/features/core/screens/profile/update_profile_screen.dart';
 import 'package:censusdemo/src/features/core/screens/profile/widgets/profile_menu.dart';
+import 'package:censusdemo/src/features/core/screens/team_member_details/team_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -81,10 +82,14 @@ class ProfileScreen extends StatelessWidget {
               const SizedBox(height:10),
 
               ProfileMenuWidget(
-                title:"Settings",icon:Icons.settings,onPress: (){},
+                title:"Settings",icon:Icons.settings,onPress: (){
+
+              },
               ),
               ProfileMenuWidget(
-                title:"User Management",icon:Icons.verified_user,onPress: (){},
+                title:"User Management",icon:Icons.verified_user,onPress: (){
+                  Get.to(()=> TeamListScreen());
+              },
               ),
               ProfileMenuWidget(title:"Remove User",icon:Icons.remove,onPress: (){},),
               const Divider(),

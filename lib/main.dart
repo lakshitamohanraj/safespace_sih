@@ -20,6 +20,15 @@ void main (){
   )).then((value)=>Get.put(AuthenticationRepository()));
   ;
 
+
+  //app
+  // WidgetsFlutterBinding.ensureInitialized();
+  // Firebase.initializeApp(options:DefaultFirebaseOptions.currentPlatform);
+
+
+
+
+
   return runApp(const App());
 }
 

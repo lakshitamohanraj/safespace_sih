@@ -6,6 +6,7 @@ import 'package:get/get_core/src/get_main.dart';
 import '../../../../../constants/sizes.dart';
 import '../../../../../constants/text_strings.dart';
 import '../../../controllers/signup_controller.dart';
+import '../../../models/user_model.dart';
 import '../../forget_password/forget_password_otp/otp_screen.dart';
 
 class SignUpFormWidget extends StatelessWidget {
@@ -72,9 +73,19 @@ class SignUpFormWidget extends StatelessWidget {
               child: ElevatedButton(
                   onPressed: (){
                     if(_formKey.currentState!.validate()){
-                      SignUpController.instance.registerUser(controller.email.text.trim(), controller.password.text.trim());
-                      SignUpController.instance.phoneAuthentication(controller.phoneNo.text.trim());
-                      Get.to(()=>const OTPScreen());
+
+                      // SignUpController.instance.registerUser(controller.email.text.trim(), controller.password.text.trim());
+                      // SignUpController.instance.phoneAuthentication(controller.phoneNo.text.trim());
+                      // Get.to(()=>const OTPScreen());
+
+                      final user=UserModel(
+                            email:controller.email.text.trim(),
+                        password:controller.password.text.trim(),
+                        fullName:controller.fullName.text.trim(),
+                        phoneNo:controller.phoneNo.text.trim(),
+                                  );
+                      SignUpController.instance.createUser(user);
+
                     }
                   },
                   child:  Text(tSignUp.toUpperCase())),

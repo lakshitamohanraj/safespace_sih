@@ -59,7 +59,7 @@ class DashBoard extends StatelessWidget {
           Stack( // Stack elements on top of each other
             children: [
               // Banner image (replace with your image provider)
-              Image.asset(tDashBoardBannerImage,
+              Image.asset("assets/images/banner.jpg",
                 height: 200.0, // Adjust height as needed
                 width: double.infinity, // Fills horizontal space
                 fit: BoxFit.cover, // Cover the container
@@ -79,7 +79,7 @@ class DashBoard extends StatelessWidget {
                 top: 16.0, // Adjust position from top
                 left: 16.0, // Adjust position from left
                 child: Image.asset(
-                  "assets/logo_light.png",
+                  "assets/images/logo_light.png",
                   height: 50.0, // Adjust height as needed
                   width: 50.0, // Adjust width as needed
                 ),
