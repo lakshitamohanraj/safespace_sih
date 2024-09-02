@@ -19,7 +19,7 @@ class LoginHeaderWidget extends StatelessWidget {
       children: [
         Image(image:const AssetImage(tLogoDark),height:size.height*0.2),
         Text(tLoginTitle,style:Theme.of(context).textTheme.headline1),
-        Text(tLoginSubTitle,style:Theme.of(context).textTheme.bodyText1),
+        Text(tLoginSubTitle,style:Theme .of(context).textTheme.bodyText1),
       ],
     );
   }

@@ -1,6 +1,6 @@
 
 
-import 'dart:js_interop';
+// import 'dart:js_interop';
 
 import 'package:censusdemo/src/features/authentication/models/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

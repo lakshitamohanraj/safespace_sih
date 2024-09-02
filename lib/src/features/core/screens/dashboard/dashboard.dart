@@ -48,11 +48,6 @@ class DashBoard extends StatelessWidget {
           )
         ],
       ),
-
-
-
-
-
       body: SingleChildScrollView( // Allow scrolling if content overflows
         child: Container(
           padding:const EdgeInsets.all(tDashboardCardPadding),
@@ -71,7 +66,7 @@ class DashBoard extends StatelessWidget {
               //3 buttons
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Row(
+            child:  Row(
               mainAxisAlignment: MainAxisAlignment.start,
                   //direction: Axis.horizontal,
                   children:  [
@@ -82,8 +77,6 @@ class DashBoard extends StatelessWidget {
 
                     const SizedBox(width:tDashboardCardPadding),
                     const NotifyMemberButton(),
-            
-
                   ],
                 ),
           ),

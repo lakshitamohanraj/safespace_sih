@@ -6,19 +6,19 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-// import 'package:get/get_navigation/src/root/get_material_app.dart';
-// import 'package:get/get_navigation/src/routes/transitions_type.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:get/get_navigation/src/routes/transitions_type.dart';
 void main (){
   WidgetsFlutterBinding.ensureInitialized();
-  // Firebase.initializeApp(options:DefaultFirebaseOptions.currentPlatform)
-  //     .then((value)=>Get.put(AuthenticationRepository()));
+  Firebase.initializeApp(options:DefaultFirebaseOptions.currentPlatform)
+      .then((value)=>Get.put(AuthenticationRepository()));
   Firebase.initializeApp(options:const FirebaseOptions(
       apiKey: "AIzaSyDyCyipFqdnGgLhYzRnuA6tdYVPNfJVE5M",
       projectId: "fir-ce64a",
       messagingSenderId: "453673442707",
       appId: "1:453673442707:web:ab86fd11913a4bc4b51c66"
   )).then((value)=>Get.put(AuthenticationRepository()));
-  ;
+
 
 
   //app

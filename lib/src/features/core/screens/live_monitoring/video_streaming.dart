@@ -15,7 +15,7 @@ class VideoStream extends StatefulWidget {
 }
 
 class _VideoStreamState extends State<VideoStream> {
-  final WebSocket _socket = WebSocket("ws://192.168.0.121:5000");
+  final WebSocket _socket = WebSocket("ws://10.1.16.185:5000");
   bool _isConnected = false;
 
   final _data = [
@@ -93,8 +93,6 @@ class _VideoStreamState extends State<VideoStream> {
                 },
               )
                   : const Text("Initiate Connection"),
-
-
               DetailsOfMonitoring(),
 
             ],

@@ -1,6 +1,6 @@
 
 
-import 'dart:js_interop';
+//import 'dart:js_interop';
 
 import 'package:censusdemo/src/features/authentication/models/user_model.dart';
 import 'package:censusdemo/src/features/core/models/violence_model.dart';
